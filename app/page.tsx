@@ -10,7 +10,9 @@ const HomePage = () => {
   const [priceFilter, setPriceFilter] = useState("");
 
   useEffect(() => {
-    setProducts(getProducts());
+    if (typeof window !== "undefined") {
+      setProducts(getProducts());
+    }
   }, []);
 
   // Get unique categories
@@ -24,8 +26,10 @@ const HomePage = () => {
   });
 
   const handleDelete = (id: string) => {
-    deleteProduct(id);
-    setProducts(getProducts());
+    if (typeof window !== "undefined") {
+      deleteProduct(id);
+      setProducts(getProducts());
+    }
   };
 
   return (
